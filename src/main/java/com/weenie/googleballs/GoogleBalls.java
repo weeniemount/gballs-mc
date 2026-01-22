@@ -2,17 +2,21 @@ package com.weenie.googleballs;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -32,6 +36,17 @@ import org.slf4j.Logger;
 @Mod(GoogleBalls.MODID)
 public class GoogleBalls
 {
+    public static class GoogleBallBlock extends Block {
+        public GoogleBallBlock(BlockBehaviour.Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+            return Shapes.block();
+        }
+    }
+
     public static final String MODID = "googleballs";
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
@@ -44,8 +59,10 @@ public class GoogleBalls
     public static final RegistryObject<Block> GOOGLEBALLS_BLOCK = BLOCKS.register("googleballs_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).noOcclusion()));
     public static final RegistryObject<Item> GOOGLEBALLS_BLOCK_ITEM = ITEMS.register("googleballs_block", () -> new BlockItem(GOOGLEBALLS_BLOCK.get(), new Item.Properties()));
     
-    public static final RegistryObject<Block> BLUEGOOGLE_BALL = BLOCKS.register("blue_google_ball", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+    public static final RegistryObject<Block> BLUEGOOGLE_BALL = BLOCKS.register("blue_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
     public static final RegistryObject<Item> BLUEGOOGLE_BALL_ITEM = ITEMS.register("blue_google_ball", () -> new BlockItem(BLUEGOOGLE_BALL.get(), new Item.Properties()));
+    public static final RegistryObject<Block> YELLOWGOOGLE_BALL = BLOCKS.register("yellow_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+    public static final RegistryObject<Item> YELLOWGOOGLE_BALL_ITEM = ITEMS.register("yellow_google_ball", () -> new BlockItem(YELLOWGOOGLE_BALL.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
@@ -58,6 +75,7 @@ public class GoogleBalls
                 output.accept(EXAMPLE_BLOCK.get());
                 output.accept(GOOGLEBALLS_BLOCK.get());
                 output.accept(BLUEGOOGLE_BALL.get());
+                output.accept(YELLOWGOOGLE_BALL.get());
             }).build());
 
     public GoogleBalls(FMLJavaModLoadingContext context)
