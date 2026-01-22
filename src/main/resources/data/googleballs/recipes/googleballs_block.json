@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "X X",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "tag": "googleballs:google_balls"
+    }
+  },
+  "result": {
+    "item": "googleballs:googleballs_block",
+    "count": 1
+  }
+}
