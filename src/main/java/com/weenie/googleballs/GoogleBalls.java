@@ -63,6 +63,10 @@ public class GoogleBalls
     public static final RegistryObject<Item> BLUEGOOGLE_BALL_ITEM = ITEMS.register("blue_google_ball", () -> new BlockItem(BLUEGOOGLE_BALL.get(), new Item.Properties()));
     public static final RegistryObject<Block> YELLOWGOOGLE_BALL = BLOCKS.register("yellow_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
     public static final RegistryObject<Item> YELLOWGOOGLE_BALL_ITEM = ITEMS.register("yellow_google_ball", () -> new BlockItem(YELLOWGOOGLE_BALL.get(), new Item.Properties()));
+    public static final RegistryObject<Block> REDGOOGLE_BALL = BLOCKS.register("red_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+    public static final RegistryObject<Item> REDGOOGLE_BALL_ITEM = ITEMS.register("red_google_ball", () -> new BlockItem(REDGOOGLE_BALL.get(), new Item.Properties()));
+    public static final RegistryObject<Block> GREENGOOGLE_BALL = BLOCKS.register("green_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+    public static final RegistryObject<Item> GREENGOOGLE_BALL_ITEM = ITEMS.register("green_google_ball", () -> new BlockItem(GREENGOOGLE_BALL.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
@@ -76,6 +80,8 @@ public class GoogleBalls
                 output.accept(GOOGLEBALLS_BLOCK.get());
                 output.accept(BLUEGOOGLE_BALL.get());
                 output.accept(YELLOWGOOGLE_BALL.get());
+                output.accept(REDGOOGLE_BALL.get());
+                output.accept(GREENGOOGLE_BALL.get());
             }).build());
 
     public GoogleBalls(FMLJavaModLoadingContext context)
