@@ -3,7 +3,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "yellow_google_ball",
 	"textures": {
-		"1": "googleballs:block/yellow_ball"
+		"1": "googleballs:block/yellow_ball",
+		"particle": "googleballs:block/yellow_ball"
 	},
 	"elements": [
 		{
