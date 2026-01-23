@@ -1,3 +1,6 @@
 {
-  "parent": "googleballs:block/green_google_ball"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "googleballs:item/green_google_ball"
+  }
 }
