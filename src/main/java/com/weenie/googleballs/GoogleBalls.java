@@ -9,12 +9,19 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -28,6 +35,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -53,6 +61,22 @@ import java.util.Collections;
 public class GoogleBalls
 {
     // classes and stuff
+    public static class BouncyEffect extends MobEffect {
+        public BouncyEffect() {
+            super(MobEffectCategory.BENEFICIAL, 0x4285F4);
+        }
+
+        @Override
+        public void applyEffectTick(LivingEntity entity, int amplifier) {
+            // do nothing
+        }
+
+        @Override
+        public boolean isDurationEffectTick(int duration, int amplifier) {
+            return true;
+        }
+    }
+
     public static class GoogleBallBlock extends Block {
         public GoogleBallBlock(BlockBehaviour.Properties properties) {
             super(properties);
@@ -103,6 +127,33 @@ public class GoogleBalls
         }
     }
 
+    public static class BowlOfGoogleBallsItem extends Item {
+        public BowlOfGoogleBallsItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+            ItemStack result = super.finishUsingItem(stack, level, entity);
+            
+            if (entity instanceof Player player) {
+                player.addEffect(new MobEffectInstance(BOUNCY_EFFECT.get(), 6000, 0));
+                
+                if (!player.getAbilities().instabuild) {
+                    if (stack.isEmpty()) {
+                        return new ItemStack(Items.BOWL);
+                    } else {
+                        if (!player.getInventory().add(new ItemStack(Items.BOWL))) {
+                            player.drop(new ItemStack(Items.BOWL), false);
+                        }
+                    }
+                }
+            }
+            
+            return result;
+        }
+    }
+
     // end of class stuff
 
     public static final String MODID = "googleballs";
@@ -111,6 +162,9 @@ public class GoogleBalls
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, MODID);
+    public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, MODID);
+
+    public static final RegistryObject<MobEffect> BOUNCY_EFFECT = MOB_EFFECTS.register("bouncy", BouncyEffect::new);
 
     public static final RegistryObject<SoundEvent> BALL_CLICK = SOUND_EVENTS.register("ball_click",
         () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "ball_click")));
@@ -136,8 +190,8 @@ public class GoogleBalls
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
 
-        public static final RegistryObject<Item> BALLS_BOWL = ITEMS.register("bowl_of_google_balls", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
-            .alwaysEat().nutrition(6).saturationMod(4f).build())));
+    public static final RegistryObject<Item> BALLS_BOWL = ITEMS.register("bowl_of_google_balls", () -> new BowlOfGoogleBallsItem(new Item.Properties().food(new FoodProperties.Builder()
+            .alwaysEat().nutrition(6).saturationMod(4f).build()).craftRemainder(Items.BOWL)));
 
     public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("googleballs_mod_tab", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
@@ -164,6 +218,7 @@ public class GoogleBalls
         ITEMS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
         SOUND_EVENTS.register(modEventBus);
+        MOB_EFFECTS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -187,5 +242,61 @@ public class GoogleBalls
     public void onServerStarting(ServerStartingEvent event)
     {
         LOGGER.info("[GOOGLEBALLS] google balling on the server");
+    }
+
+    private static final java.util.Map<java.util.UUID, Boolean> wasOnGround = new java.util.HashMap<>();
+    private static final java.util.Map<java.util.UUID, Double> storedFallVelocity = new java.util.HashMap<>();
+    private static final java.util.Map<java.util.UUID, net.minecraft.world.phys.Vec3> storedHorizontalVelocity = new java.util.HashMap<>();
+    private static final double MIN_BOUNCE_VELOCITY = -0.5;
+
+    @SubscribeEvent
+    public void onLivingUpdate(LivingEvent.LivingTickEvent event) {
+        LivingEntity entity = event.getEntity();
+        
+        if (entity.hasEffect(BOUNCY_EFFECT.get())) {
+            java.util.UUID uuid = entity.getUUID();
+            boolean wasOnGroundBefore = wasOnGround.getOrDefault(uuid, true);
+            double currentYVel = entity.getDeltaMovement().y;
+            
+            if (!entity.onGround() && currentYVel < MIN_BOUNCE_VELOCITY) {
+                storedFallVelocity.put(uuid, currentYVel);
+                storedHorizontalVelocity.put(uuid, new net.minecraft.world.phys.Vec3(
+                    entity.getDeltaMovement().x, 
+                    0, 
+                    entity.getDeltaMovement().z
+                ));
+            }
+            
+            if (!wasOnGroundBefore && entity.onGround()) {
+                Double fallVel = storedFallVelocity.get(uuid);
+                net.minecraft.world.phys.Vec3 horizontalVel = storedHorizontalVelocity.get(uuid);
+                
+                if (fallVel != null && fallVel < MIN_BOUNCE_VELOCITY) {
+                    double bounceStrength = Math.abs(fallVel) * 0.8;
+                    
+                    double xVel = horizontalVel != null ? horizontalVel.x : entity.getDeltaMovement().x;
+                    double zVel = horizontalVel != null ? horizontalVel.z : entity.getDeltaMovement().z;
+                    
+                    entity.setDeltaMovement(xVel, bounceStrength, zVel);
+                    entity.hurtMarked = true;
+                    
+                    entity.level().playSound(null, entity.blockPosition(), 
+                        BALL_CLICK.get(), SoundSource.PLAYERS, 0.8F, 1.0F + (float)(Math.random() * 0.5F));
+                }
+                
+                storedFallVelocity.remove(uuid);
+                storedHorizontalVelocity.remove(uuid);
+            }
+            
+            wasOnGround.put(uuid, entity.onGround());
+            
+            entity.fallDistance = 0;
+            
+        } else {
+            java.util.UUID uuid = entity.getUUID();
+            wasOnGround.remove(uuid);
+            storedFallVelocity.remove(uuid);
+            storedHorizontalVelocity.remove(uuid);
+        }
     }
 }

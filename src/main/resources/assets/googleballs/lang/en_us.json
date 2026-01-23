@@ -19,5 +19,8 @@
   "item_group.googleballs.googleballs_mod_tab": "Google Balls",
   "item.googleballs.bowl_of_google_balls": "Bowl of Google Balls",
 
-  "sound.googleballs.ball_click": "Sound of Google Balls"
+  "sound.googleballs.ball_click": "Sound of Google Balls",
+
+  "effect.googleballs.bouncy": "Bouncy",
+  "effect.googleballs.bouncy.description": "yor a google ball now"
 }
