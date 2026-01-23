@@ -1,0 +1,9 @@
+{
+  "ball_click": {
+    "category": "block",
+    "subtitle": "sound.googleballs.ball_click",
+    "sounds": [
+      "googleballs:ball_click"
+    ]
+  }
+}
