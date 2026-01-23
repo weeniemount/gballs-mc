@@ -12,6 +12,8 @@
   "block.googleballs.red_google_ball.desc": "the red google ball!",
   "block.googleballs.green_google_ball.desc": "the green google ball!",
   "block.googleballs.purple_google_ball.desc": "the.... purple... google ball? what the fuck??",
+  "block.googleballs.example_block.desc": "Example Block Description!!!!!!!!!!",
+  "block.googleballs.googleballs_block.desc": "googl ball",
 
   "item.googleballs.example_item": "Example Item Name",
   "item_group.googleballs.googleballs_mod_tab": "Google Balls",
