@@ -41,6 +41,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import java.util.List;
+import javax.annotation.Nullable;
 
 @Mod(GoogleBalls.MODID)
 public class GoogleBalls
@@ -65,6 +71,12 @@ public class GoogleBalls
                 level.playSound(null, pos, GoogleBalls.BALL_CLICK.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             }
             return InteractionResult.SUCCESS;
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, level, tooltip, flag);
         }
     }
 
@@ -96,6 +108,9 @@ public class GoogleBalls
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
 
+        public static final RegistryObject<Item> BALLS_BOWL = ITEMS.register("bowl_of_google_balls", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
+            .alwaysEat().nutrition(6).saturationMod(4f).build())));
+
     public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("googleballs_mod_tab", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> BLUEGOOGLE_BALL_ITEM.get().getDefaultInstance())
@@ -108,6 +123,7 @@ public class GoogleBalls
                 output.accept(YELLOWGOOGLE_BALL.get());
                 output.accept(REDGOOGLE_BALL.get());
                 output.accept(GREENGOOGLE_BALL.get());
+                output.accept(BALLS_BOWL.get());
             }).build());
 
     public GoogleBalls(FMLJavaModLoadingContext context)
