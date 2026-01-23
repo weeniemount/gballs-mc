@@ -1,10 +1,11 @@
 {
   "item.googleballs.example_item": "Example Item Name",
   "block.googleballs.example_block": "Example Block Name",
-  "block.googleballs.googleballs_block": "block ball",
-  "block.googleballs.blue_google_ball": "blue google",
-  "block.googleballs.yellow_google_ball": "yellow google",
-  "block.googleballs.red_google_ball": "red google",
-  "block.googleballs.green_google_ball": "green google",
-  "item_group.googleballs.googleballs_mod_tab": "Google Balls"
+  "block.googleballs.googleballs_block": "Google Balls Block",
+  "block.googleballs.blue_google_ball": "Blue Google Ball",
+  "block.googleballs.yellow_google_ball": "Yellow Google Ball",
+  "block.googleballs.red_google_ball": "Red Google Ball",
+  "block.googleballs.green_google_ball": "Green Google Ball",
+  "item_group.googleballs.googleballs_mod_tab": "Google Balls",
+  "sound.googleballs.ball_click": "Sound of Google Balls"
 }
