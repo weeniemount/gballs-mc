@@ -49,9 +49,13 @@ public class GoogleBalls
             super(properties);
         }
 
-        @Override
         public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
-            return Shapes.block();
+            return Shapes.empty();
+        }
+
+        @Override
+        public boolean propagatesSkylightDown(BlockState state, BlockGetter level, BlockPos pos) {
+            return true;
         }
 
         @Override
