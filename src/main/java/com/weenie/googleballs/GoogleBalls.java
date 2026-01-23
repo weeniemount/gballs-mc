@@ -40,6 +40,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+import net.minecraft.network.chat.Component;
 
 @Mod(GoogleBalls.MODID)
 public class GoogleBalls
@@ -97,7 +98,8 @@ public class GoogleBalls
 
     public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("googleballs_mod_tab", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
+            .icon(() -> BLUEGOOGLE_BALL_ITEM.get().getDefaultInstance())
+            .title(Component.translatable("item_group.googleballs.googleballs_mod_tab"))
             .displayItems((parameters, output) -> {
                 output.accept(EXAMPLE_ITEM.get());
                 output.accept(EXAMPLE_BLOCK.get());

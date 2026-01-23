@@ -5,5 +5,6 @@
   "block.googleballs.blue_google_ball": "blue google",
   "block.googleballs.yellow_google_ball": "yellow google",
   "block.googleballs.red_google_ball": "red google",
-  "block.googleballs.green_google_ball": "green google"
+  "block.googleballs.green_google_ball": "green google",
+  "item_group.googleballs.googleballs_mod_tab": "Google Balls"
 }
