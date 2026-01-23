@@ -52,6 +52,7 @@ import java.util.Collections;
 @Mod(GoogleBalls.MODID)
 public class GoogleBalls
 {
+    // classes and stuff
     public static class GoogleBallBlock extends Block {
         public GoogleBallBlock(BlockBehaviour.Properties properties) {
             super(properties);
@@ -86,6 +87,24 @@ public class GoogleBalls
         }
     }
 
+    // regular blocks in the mod but without that funny custom model stuff the google balls block has
+    public static class RegularBallBlock extends Block {
+        public RegularBallBlock(BlockBehaviour.Properties properties) {
+            super(properties);
+        }
+        public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, level, tooltip, flag);
+        }
+
+        @Override
+        public List<ItemStack> getDrops(BlockState state, net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
+            return Collections.singletonList(new ItemStack(this));
+        }
+    }
+
+    // end of class stuff
+
     public static final String MODID = "googleballs";
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
@@ -96,10 +115,10 @@ public class GoogleBalls
     public static final RegistryObject<SoundEvent> BALL_CLICK = SOUND_EVENTS.register("ball_click",
         () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "ball_click")));
 
-    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new RegularBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
     public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
 
-    public static final RegistryObject<Block> GOOGLEBALLS_BLOCK = BLOCKS.register("googleballs_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).noOcclusion().strength(0.5f, 6.0f)));
+    public static final RegistryObject<Block> GOOGLEBALLS_BLOCK = BLOCKS.register("googleballs_block", () -> new RegularBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).noOcclusion().strength(0.5f, 6.0f)));
     public static final RegistryObject<Item> GOOGLEBALLS_BLOCK_ITEM = ITEMS.register("googleballs_block", () -> new BlockItem(GOOGLEBALLS_BLOCK.get(), new Item.Properties()));
     
     public static final RegistryObject<Block> BLUEGOOGLE_BALL = BLOCKS.register("blue_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5f, 6.0f)));
