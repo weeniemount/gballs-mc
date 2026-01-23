@@ -5,11 +5,13 @@
   "block.googleballs.yellow_google_ball": "Yellow Google Ball",
   "block.googleballs.red_google_ball": "Red Google Ball",
   "block.googleballs.green_google_ball": "Green Google Ball",
+  "block.googleballs.purple_google_ball": "Purple Google Ball?",
 
   "block.googleballs.blue_google_ball.desc": "the blue google ball!",
   "block.googleballs.yellow_google_ball.desc": "the yellow google ball!",
   "block.googleballs.red_google_ball.desc": "the red google ball!",
   "block.googleballs.green_google_ball.desc": "the green google ball!",
+  "block.googleballs.purple_google_ball.desc": "the.... purple... google ball? what the fuck??",
 
   "item.googleballs.example_item": "Example Item Name",
   "item_group.googleballs.googleballs_mod_tab": "Google Balls",
