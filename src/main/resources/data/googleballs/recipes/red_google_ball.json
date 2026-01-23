@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    "TDT",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:terracotta"
+    },
+    "D": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "result": {
+    "item": "googleballs:red_google_ball"
+  }
+}
