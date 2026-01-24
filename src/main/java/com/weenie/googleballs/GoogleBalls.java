@@ -134,6 +134,23 @@ public class GoogleBalls
     public static final RegistryObject<Item> BALLS_BOWL = ITEMS.register("bowl_of_google_balls", () -> new BallClasses.BowlOfGoogleBallsItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(6).saturationMod(4f).build()).craftRemainder(Items.BOWL)));
 
+    public static final RegistryObject<Block> GOOGLE_BALLS_ORE = BLOCKS.register("google_balls_ore", 
+        () -> new BallClasses.GoogleBallsOreBlock(BlockBehaviour.Properties.of()
+            .mapColor(MapColor.STONE)
+            .requiresCorrectToolForDrops()
+            .strength(3.0f, 3.0f)));
+    public static final RegistryObject<Item> GOOGLE_BALLS_ORE_ITEM = ITEMS.register("google_balls_ore", 
+        () -> new BlockItem(GOOGLE_BALLS_ORE.get(), new Item.Properties()));
+
+    public static final RegistryObject<Block> DEEPSLATE_GOOGLE_BALLS_ORE = BLOCKS.register("deepslate_google_balls_ore", 
+        () -> new BallClasses.GoogleBallsOreBlock(BlockBehaviour.Properties.of()
+            .mapColor(MapColor.DEEPSLATE)
+            .requiresCorrectToolForDrops()
+            .strength(4.5f, 3.0f)
+            .sound(net.minecraft.world.level.block.SoundType.DEEPSLATE)));
+    public static final RegistryObject<Item> DEEPSLATE_GOOGLE_BALLS_ORE_ITEM = ITEMS.register("deepslate_google_balls_ore", 
+        () -> new BlockItem(DEEPSLATE_GOOGLE_BALLS_ORE.get(), new Item.Properties()));
+
     public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("googleballs_mod_tab", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> BLUEGOOGLE_BALL_ITEM.get().getDefaultInstance())
@@ -154,6 +171,8 @@ public class GoogleBalls
                 output.accept(RED_BALL_BANNER_PATTERN.get());
                 output.accept(GREEN_BALL_BANNER_PATTERN.get());
                 output.accept(BALLS_BOWL.get());
+                output.accept(GOOGLE_BALLS_ORE.get());
+                output.accept(DEEPSLATE_GOOGLE_BALLS_ORE.get());
             }).build());
 
     public GoogleBalls(FMLJavaModLoadingContext context)

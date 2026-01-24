@@ -265,4 +265,29 @@ public class BallClasses {
             return net.minecraft.world.InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
         }
     }
+
+    public static class GoogleBallsOreBlock extends Block {
+        public GoogleBallsOreBlock(BlockBehaviour.Properties properties) {
+            super(properties);
+        }
+        
+        @Override
+        public List<ItemStack> getDrops(BlockState state, net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
+            List<ItemStack> drops = new java.util.ArrayList<>();
+            
+            java.util.Random rand = new java.util.Random();
+            int ballType = rand.nextInt(4);
+            
+            Block ballToDrop;
+            switch(ballType) {
+                case 0: ballToDrop = GoogleBalls.BLUEGOOGLE_BALL.get(); break;
+                case 1: ballToDrop = GoogleBalls.YELLOWGOOGLE_BALL.get(); break;
+                case 2: ballToDrop = GoogleBalls.REDGOOGLE_BALL.get(); break;
+                default: ballToDrop = GoogleBalls.GREENGOOGLE_BALL.get(); break;
+            }
+            
+            drops.add(new ItemStack(ballToDrop.asItem(), 1));
+            return drops;
+        }
+    }
 }

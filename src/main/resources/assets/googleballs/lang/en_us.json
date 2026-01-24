@@ -6,6 +6,8 @@
   "block.googleballs.red_google_ball": "Red Google Ball",
   "block.googleballs.green_google_ball": "Green Google Ball",
   "block.googleballs.purple_google_ball": "Purple Google Ball?",
+  "block.googleballs.google_balls_ore": "Google Balls Ore",
+  "block.googleballs.deepslate_google_balls_ore": "Deepslate Google Balls Ore",
 
   "block.googleballs.blue_google_ball.desc": "the blue google ball!\n\nright click to throw\nshift + right click to place down normally",
   "block.googleballs.yellow_google_ball.desc": "the yellow google ball!\n\nright click to throw\nshift + right click to place down normally",
