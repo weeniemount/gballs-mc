@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B ",
+    "RYG",
+    " W "
+  ],
+  "key": {
+    "B": {
+      "item": "googleballs:blue_google_ball"
+    },
+    "R": {
+      "item": "googleballs:red_google_ball"
+    },
+    "Y": {
+      "item": "googleballs:yellow_google_ball"
+    },
+    "G": {
+      "item": "googleballs:green_google_ball"
+    },
+    "W": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "googleballs:bowl_of_google_balls",
+    "count": 1
+  }
+}
