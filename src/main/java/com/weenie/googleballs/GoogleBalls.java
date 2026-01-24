@@ -198,8 +198,6 @@ public class GoogleBalls
             .icon(() -> BLUEGOOGLE_BALL_ITEM.get().getDefaultInstance())
             .title(Component.translatable("item_group.googleballs.googleballs_mod_tab"))
             .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get());
-                output.accept(EXAMPLE_BLOCK.get());
                 output.accept(GOOGLEBALLS_BLOCK.get());
                 output.accept(BLUEGOOGLE_BALL.get());
                 output.accept(YELLOWGOOGLE_BALL.get());
