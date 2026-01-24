@@ -132,6 +132,11 @@ public class GoogleBalls
             super(properties);
         }
 
+        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable("item.googleballs.bowl_of_google_balls.desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, level, tooltip, flag);
+        }
+
         @Override
         public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
             ItemStack result = super.finishUsingItem(stack, level, entity);
