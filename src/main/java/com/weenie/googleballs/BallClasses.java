@@ -160,6 +160,23 @@ public class BallClasses {
         }
         
         @Override
+        protected void onHitEntity(net.minecraft.world.phys.EntityHitResult result) {
+            super.onHitEntity(result);
+            if (!this.level().isClientSide) {
+                net.minecraft.world.entity.Entity hitEntity = result.getEntity();
+                
+                hitEntity.hurt(this.damageSources().thrown(this, this.getOwner()), 1.0F);
+                
+                if (blockToPlace != null) {
+                    this.spawnAtLocation(blockToPlace.asItem());
+                }
+                
+                this.level().playSound(null, this.blockPosition(), 
+                    GoogleBalls.BALL_CLICK.get(), SoundSource.NEUTRAL, 0.7F, 1.2F + (float)(Math.random() * 0.3F));
+            }
+        }
+        
+        @Override
         protected void onHitBlock(net.minecraft.world.phys.BlockHitResult result) {
             super.onHitBlock(result);
             if (!this.level().isClientSide && blockToPlace != null) {
