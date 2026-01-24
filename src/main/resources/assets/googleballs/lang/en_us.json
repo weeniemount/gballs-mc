@@ -6,6 +6,7 @@
   "block.googleballs.red_google_ball": "Red Google Ball",
   "block.googleballs.green_google_ball": "Green Google Ball",
   "block.googleballs.purple_google_ball": "Purple Google Ball?",
+  "block.minecraft.banner.googleballs.google_balls": "Google Balls",
 
   "block.googleballs.blue_google_ball.desc": "the blue google ball!\n\nright click to throw\nshift + right click to place down normally",
   "block.googleballs.yellow_google_ball.desc": "the yellow google ball!\n\nright click to throw\nshift + right click to place down normally",
@@ -15,6 +16,23 @@
   "block.googleballs.example_block.desc": "Example Block Description!!!!!!!!!!",
   "block.googleballs.googleballs_block.desc": "googl ball",
 
+  "block.minecraft.banner.googleballs.google_balls.black": "Black Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.blue": "Blue Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.brown": "Brown Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.cyan": "Cyan Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.gray": "Gray Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.green": "Green Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.light_blue": "Light Blue Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.light_gray": "Light Gray Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.lime": "Lime Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.magenta": "Magenta Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.orange": "Orange Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.pink": "Pink Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.purple": "Purple Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.red": "Red Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.white": "White Google Balls",
+  "block.minecraft.banner.googleballs.google_balls.yellow": "Yellow Google Balls",
+
   "item.googleballs.example_item": "Example Item Name",
   "item_group.googleballs.googleballs_mod_tab": "Google Balls",
   "item.googleballs.bowl_of_google_balls": "Bowl of Google Balls",
@@ -22,8 +40,10 @@
   "item.googleballs.yellow_google_ball_seeds": "Yellow Google Ball Seeds",
   "item.googleballs.red_google_ball_seeds": "Red Google Ball Seeds",
   "item.googleballs.green_google_ball_seeds": "Green Google Ball Seeds",
-
+  "item.googleballs.google_balls_banner_pattern": "Banner Pattern",
+  
   "item.googleballs.bowl_of_google_balls.desc": "a bowl of the 4 google balls. very nutritional!",
+  "item.googleballs.google_balls_banner_pattern.desc": "Google Balls",
 
   "sound.googleballs.ball_click": "Sound of Google Balls",
 
