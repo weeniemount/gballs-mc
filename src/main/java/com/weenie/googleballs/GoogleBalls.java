@@ -56,6 +56,7 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 import javax.annotation.Nullable;
 import java.util.Collections;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod(GoogleBalls.MODID)
 public class GoogleBalls
@@ -132,6 +133,7 @@ public class GoogleBalls
             super(properties);
         }
 
+        @Override
         public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
             tooltip.add(Component.translatable("item.googleballs.bowl_of_google_balls.desc").withStyle(ChatFormatting.GRAY));
             super.appendHoverText(stack, level, tooltip, flag);
@@ -159,6 +161,89 @@ public class GoogleBalls
         }
     }
 
+    // throw google balls
+    public static class ThrownGoogleBall extends net.minecraft.world.entity.projectile.ThrowableItemProjectile {
+        private Block blockToPlace;
+        
+        public ThrownGoogleBall(net.minecraft.world.entity.EntityType<? extends ThrownGoogleBall> type, Level level) {
+            super(type, level);
+            this.blockToPlace = null;
+        }
+        
+        public ThrownGoogleBall(Level level, LivingEntity shooter, Block blockToPlace) {
+            super(THROWN_GOOGLE_BALL_TYPE.get(), shooter, level);
+            this.blockToPlace = blockToPlace;
+        }
+        
+        @Override
+        protected Item getDefaultItem() {
+            return Items.SNOWBALL;
+        }
+        
+        @Override
+        protected void onHit(net.minecraft.world.phys.HitResult result) {
+            super.onHit(result);
+            if (!this.level().isClientSide) {
+                this.level().broadcastEntityEvent(this, (byte)3);
+                this.level().playSound(null, this.blockPosition(), 
+                    BALL_CLICK.get(), SoundSource.NEUTRAL, 0.5F, 0.8F + (float)(Math.random() * 0.4F));
+                this.discard();
+            }
+        }
+        
+        @Override
+        protected void onHitBlock(net.minecraft.world.phys.BlockHitResult result) {
+            super.onHitBlock(result);
+            if (!this.level().isClientSide && blockToPlace != null) {
+                BlockPos pos = result.getBlockPos().relative(result.getDirection());
+                if (this.level().getBlockState(pos).isAir()) {
+                    this.level().setBlock(pos, blockToPlace.defaultBlockState(), 3);
+                } else {
+                    this.spawnAtLocation(blockToPlace.asItem());
+                }
+            }
+        }
+    }
+
+    public static class ThrowableGoogleBallItem extends BlockItem {
+        public ThrowableGoogleBallItem(Block block, Properties properties) {
+            super(block, properties);
+        }
+        
+        @Override
+        public InteractionResult useOn(net.minecraft.world.item.context.UseOnContext context) {
+            if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
+                return super.useOn(context);
+            }
+            return InteractionResult.PASS;
+        }
+        
+        @Override
+        public net.minecraft.world.InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+            ItemStack itemstack = player.getItemInHand(hand);
+            
+            if (player.isShiftKeyDown()) {
+                return net.minecraft.world.InteractionResultHolder.pass(itemstack);
+            }
+            
+            if (!level.isClientSide) {
+                ThrownGoogleBall thrownBall = new ThrownGoogleBall(level, player, this.getBlock());
+                thrownBall.setItem(itemstack);
+                thrownBall.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+                level.addFreshEntity(thrownBall);
+                level.playSound(null, player.blockPosition(), 
+                    net.minecraft.sounds.SoundEvents.SNOWBALL_THROW, SoundSource.PLAYERS, 0.5F, 0.8F);
+            }
+            
+            player.awardStat(net.minecraft.stats.Stats.ITEM_USED.get(this));
+            if (!player.getAbilities().instabuild) {
+                itemstack.shrink(1);
+            }
+            
+            return net.minecraft.world.InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
+        }
+    }
+
     // end of class stuff
 
     public static final String MODID = "googleballs";
@@ -168,11 +253,22 @@ public class GoogleBalls
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, MODID);
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, MODID);
+    public static final DeferredRegister<net.minecraft.world.entity.EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
 
     public static final RegistryObject<MobEffect> BOUNCY_EFFECT = MOB_EFFECTS.register("bouncy", BouncyEffect::new);
 
     public static final RegistryObject<SoundEvent> BALL_CLICK = SOUND_EVENTS.register("ball_click",
         () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "ball_click")));
+
+    public static final RegistryObject<net.minecraft.world.entity.EntityType<ThrownGoogleBall>> THROWN_GOOGLE_BALL_TYPE = 
+        ENTITY_TYPES.register("thrown_google_ball", () -> 
+            net.minecraft.world.entity.EntityType.Builder.<ThrownGoogleBall>of(
+                (type, level) -> new ThrownGoogleBall(type, level), 
+                net.minecraft.world.entity.MobCategory.MISC)
+            .sized(0.25F, 0.25F)
+            .clientTrackingRange(4)
+            .updateInterval(10)
+            .build("thrown_google_ball"));
 
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new RegularBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
     public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
@@ -181,13 +277,13 @@ public class GoogleBalls
     public static final RegistryObject<Item> GOOGLEBALLS_BLOCK_ITEM = ITEMS.register("googleballs_block", () -> new BlockItem(GOOGLEBALLS_BLOCK.get(), new Item.Properties()));
     
     public static final RegistryObject<Block> BLUEGOOGLE_BALL = BLOCKS.register("blue_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5f, 6.0f)));
-    public static final RegistryObject<Item> BLUEGOOGLE_BALL_ITEM = ITEMS.register("blue_google_ball", () -> new BlockItem(BLUEGOOGLE_BALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item> BLUEGOOGLE_BALL_ITEM = ITEMS.register("blue_google_ball", () -> new ThrowableGoogleBallItem(BLUEGOOGLE_BALL.get(), new Item.Properties()));
     public static final RegistryObject<Block> YELLOWGOOGLE_BALL = BLOCKS.register("yellow_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5f, 6.0f)));
-    public static final RegistryObject<Item> YELLOWGOOGLE_BALL_ITEM = ITEMS.register("yellow_google_ball", () -> new BlockItem(YELLOWGOOGLE_BALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item> YELLOWGOOGLE_BALL_ITEM = ITEMS.register("yellow_google_ball", () -> new ThrowableGoogleBallItem(YELLOWGOOGLE_BALL.get(), new Item.Properties()));
     public static final RegistryObject<Block> REDGOOGLE_BALL = BLOCKS.register("red_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5f, 6.0f)));
-    public static final RegistryObject<Item> REDGOOGLE_BALL_ITEM = ITEMS.register("red_google_ball", () -> new BlockItem(REDGOOGLE_BALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item> REDGOOGLE_BALL_ITEM = ITEMS.register("red_google_ball", () -> new ThrowableGoogleBallItem(REDGOOGLE_BALL.get(), new Item.Properties()));
     public static final RegistryObject<Block> GREENGOOGLE_BALL = BLOCKS.register("green_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5f, 6.0f)));
-    public static final RegistryObject<Item> GREENGOOGLE_BALL_ITEM = ITEMS.register("green_google_ball", () -> new BlockItem(GREENGOOGLE_BALL.get(), new Item.Properties()));
+    public static final RegistryObject<Item> GREENGOOGLE_BALL_ITEM = ITEMS.register("green_google_ball", () -> new ThrowableGoogleBallItem(GREENGOOGLE_BALL.get(), new Item.Properties()));
     // the purple google ball. intentionally unobtainable without /give.
     public static final RegistryObject<Block> PURPLEGOOGLE_BALL = BLOCKS.register("purple_google_ball", () -> new GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5f, 6.0f)));
     public static final RegistryObject<Item> PURPLEGOOGLE_BALL_ITEM = ITEMS.register("purple_google_ball", () -> new BlockItem(PURPLEGOOGLE_BALL.get(), new Item.Properties()));
@@ -222,6 +318,7 @@ public class GoogleBalls
         CREATIVE_MODE_TABS.register(modEventBus);
         SOUND_EVENTS.register(modEventBus);
         MOB_EFFECTS.register(modEventBus);
+        ENTITY_TYPES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -251,6 +348,19 @@ public class GoogleBalls
     private static final java.util.Map<java.util.UUID, Double> storedFallVelocity = new java.util.HashMap<>();
     private static final java.util.Map<java.util.UUID, net.minecraft.world.phys.Vec3> storedHorizontalVelocity = new java.util.HashMap<>();
     private static final double MIN_BOUNCE_VELOCITY = -0.5;
+
+    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(() -> {
+                net.minecraft.client.renderer.entity.EntityRenderers.register(
+                    THROWN_GOOGLE_BALL_TYPE.get(), 
+                    net.minecraft.client.renderer.entity.ThrownItemRenderer::new
+                );
+            });
+        }
+    }
 
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingTickEvent event) {
