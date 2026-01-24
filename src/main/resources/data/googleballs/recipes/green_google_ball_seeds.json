@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "googleballs:green_google_ball"
+    }
+  ],
+  "result": {
+    "item": "googleballs:green_google_ball_seeds",
+    "count": 2
+  }
+}
