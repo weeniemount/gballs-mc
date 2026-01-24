@@ -15,6 +15,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -81,6 +82,24 @@ public class GoogleBalls
     public static final RegistryObject<Block> PURPLEGOOGLE_BALL = BLOCKS.register("purple_google_ball", () -> new BallClasses.GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5f, 6.0f)));
     public static final RegistryObject<Item> PURPLEGOOGLE_BALL_ITEM = ITEMS.register("purple_google_ball", () -> new BlockItem(PURPLEGOOGLE_BALL.get(), new Item.Properties()));
 
+    public static final RegistryObject<Block> BLUE_GOOGLE_BALL_CROP = BLOCKS.register("blue_google_ball_crop", 
+        () -> new BallClasses.GoogleBallCropBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(net.minecraft.world.level.block.SoundType.CROP), BLUEGOOGLE_BALL.get()));
+    public static final RegistryObject<Block> YELLOW_GOOGLE_BALL_CROP = BLOCKS.register("yellow_google_ball_crop", 
+        () -> new BallClasses.GoogleBallCropBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(net.minecraft.world.level.block.SoundType.CROP), YELLOWGOOGLE_BALL.get()));
+    public static final RegistryObject<Block> RED_GOOGLE_BALL_CROP = BLOCKS.register("red_google_ball_crop", 
+        () -> new BallClasses.GoogleBallCropBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(net.minecraft.world.level.block.SoundType.CROP), REDGOOGLE_BALL.get()));
+    public static final RegistryObject<Block> GREEN_GOOGLE_BALL_CROP = BLOCKS.register("green_google_ball_crop", 
+        () -> new BallClasses.GoogleBallCropBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(net.minecraft.world.level.block.SoundType.CROP), GREENGOOGLE_BALL.get()));
+
+    public static final RegistryObject<Item> BLUE_GOOGLE_BALL_SEEDS = ITEMS.register("blue_google_ball_seeds", 
+        () -> new ItemNameBlockItem(BLUE_GOOGLE_BALL_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> YELLOW_GOOGLE_BALL_SEEDS = ITEMS.register("yellow_google_ball_seeds", 
+        () -> new ItemNameBlockItem(YELLOW_GOOGLE_BALL_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> RED_GOOGLE_BALL_SEEDS = ITEMS.register("red_google_ball_seeds", 
+        () -> new ItemNameBlockItem(RED_GOOGLE_BALL_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> GREEN_GOOGLE_BALL_SEEDS = ITEMS.register("green_google_ball_seeds", 
+        () -> new ItemNameBlockItem(GREEN_GOOGLE_BALL_CROP.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
 
@@ -97,6 +116,10 @@ public class GoogleBalls
                 output.accept(YELLOWGOOGLE_BALL.get());
                 output.accept(REDGOOGLE_BALL.get());
                 output.accept(GREENGOOGLE_BALL.get());
+                output.accept(BLUE_GOOGLE_BALL_SEEDS.get());
+                output.accept(YELLOW_GOOGLE_BALL_SEEDS.get());
+                output.accept(RED_GOOGLE_BALL_SEEDS.get());
+                output.accept(GREEN_GOOGLE_BALL_SEEDS.get());
                 output.accept(BALLS_BOWL.get());
             }).build());
 
@@ -150,6 +173,23 @@ public class GoogleBalls
                 net.minecraft.client.renderer.entity.EntityRenderers.register(
                     THROWN_GOOGLE_BALL_TYPE.get(), 
                     net.minecraft.client.renderer.entity.ThrownItemRenderer::new
+                );
+                
+                net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(
+                    BLUE_GOOGLE_BALL_CROP.get(), 
+                    net.minecraft.client.renderer.RenderType.cutout()
+                );
+                net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(
+                    YELLOW_GOOGLE_BALL_CROP.get(), 
+                    net.minecraft.client.renderer.RenderType.cutout()
+                );
+                net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(
+                    RED_GOOGLE_BALL_CROP.get(), 
+                    net.minecraft.client.renderer.RenderType.cutout()
+                );
+                net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(
+                    GREEN_GOOGLE_BALL_CROP.get(), 
+                    net.minecraft.client.renderer.RenderType.cutout()
                 );
             });
         }

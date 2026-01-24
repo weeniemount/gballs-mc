@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "googleballs:block/red_google_ball_crop_stage7"
+  }
+}

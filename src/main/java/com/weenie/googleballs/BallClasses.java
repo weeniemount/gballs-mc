@@ -190,6 +190,43 @@ public class BallClasses {
         }
     }
 
+    public static class GoogleBallCropBlock extends net.minecraft.world.level.block.CropBlock {
+        private final Block ballBlock;
+        
+        public GoogleBallCropBlock(BlockBehaviour.Properties properties, Block ballBlock) {
+            super(properties);
+            this.ballBlock = ballBlock;
+        }
+        
+        @Override
+        protected net.minecraft.world.level.ItemLike getBaseSeedId() {
+            if (ballBlock == GoogleBalls.BLUEGOOGLE_BALL.get()) {
+                return GoogleBalls.BLUE_GOOGLE_BALL_SEEDS.get();
+            } else if (ballBlock == GoogleBalls.YELLOWGOOGLE_BALL.get()) {
+                return GoogleBalls.YELLOW_GOOGLE_BALL_SEEDS.get();
+            } else if (ballBlock == GoogleBalls.REDGOOGLE_BALL.get()) {
+                return GoogleBalls.RED_GOOGLE_BALL_SEEDS.get();
+            } else if (ballBlock == GoogleBalls.GREENGOOGLE_BALL.get()) {
+                return GoogleBalls.GREEN_GOOGLE_BALL_SEEDS.get();
+            }
+            return Items.WHEAT_SEEDS;
+        }
+        
+        @Override
+        public List<ItemStack> getDrops(BlockState state, net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
+            List<ItemStack> drops = new java.util.ArrayList<>();
+            
+            if (this.isMaxAge(state)) {
+                drops.add(new ItemStack(ballBlock.asItem(), 2));
+                drops.add(new ItemStack(this.getBaseSeedId(), 2));
+            } else {
+                drops.add(new ItemStack(this.getBaseSeedId()));
+            }
+            
+            return drops;
+        }
+    }
+
     public static class ThrowableGoogleBallItem extends BlockItem {
         public ThrowableGoogleBallItem(Block block, Properties properties) {
             super(block, properties);

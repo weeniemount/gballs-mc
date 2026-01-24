@@ -7,10 +7,10 @@
   "block.googleballs.green_google_ball": "Green Google Ball",
   "block.googleballs.purple_google_ball": "Purple Google Ball?",
 
-  "block.googleballs.blue_google_ball.desc": "the blue google ball!",
-  "block.googleballs.yellow_google_ball.desc": "the yellow google ball!",
-  "block.googleballs.red_google_ball.desc": "the red google ball!",
-  "block.googleballs.green_google_ball.desc": "the green google ball!",
+  "block.googleballs.blue_google_ball.desc": "the blue google ball!\n\nright click to throw\nshift + right click to place down normally",
+  "block.googleballs.yellow_google_ball.desc": "the yellow google ball!\n\nright click to throw\nshift + right click to place down normally",
+  "block.googleballs.red_google_ball.desc": "the red google ball!\n\nright click to throw\nshift + right click to place down normally",
+  "block.googleballs.green_google_ball.desc": "the green google ball!\n\nright click to throw\nshift + right click to place down normally",
   "block.googleballs.purple_google_ball.desc": "the.... purple... google ball? what the fuck??",
   "block.googleballs.example_block.desc": "Example Block Description!!!!!!!!!!",
   "block.googleballs.googleballs_block.desc": "googl ball",
@@ -18,6 +18,10 @@
   "item.googleballs.example_item": "Example Item Name",
   "item_group.googleballs.googleballs_mod_tab": "Google Balls",
   "item.googleballs.bowl_of_google_balls": "Bowl of Google Balls",
+  "item.googleballs.blue_google_ball_seeds": "Blue Google Ball Seeds",
+  "item.googleballs.yellow_google_ball_seeds": "Yellow Google Ball Seeds",
+  "item.googleballs.red_google_ball_seeds": "Red Google Ball Seeds",
+  "item.googleballs.green_google_ball_seeds": "Green Google Ball Seeds",
 
   "item.googleballs.bowl_of_google_balls.desc": "a bowl of the 4 google balls. very nutritional!",
 
