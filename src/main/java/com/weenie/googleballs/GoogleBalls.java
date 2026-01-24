@@ -54,6 +54,14 @@ public class GoogleBalls
 
     public static final RegistryObject<net.minecraft.world.level.block.entity.BannerPattern> GOOGLE_BALLS_PATTERN = 
         BANNER_PATTERNS.register("google_balls", () -> new net.minecraft.world.level.block.entity.BannerPattern("gbl"));
+    public static final RegistryObject<net.minecraft.world.level.block.entity.BannerPattern> BLUE_BALL_PATTERN = 
+        BANNER_PATTERNS.register("blue_ball", () -> new net.minecraft.world.level.block.entity.BannerPattern("bbl"));
+    public static final RegistryObject<net.minecraft.world.level.block.entity.BannerPattern> YELLOW_BALL_PATTERN = 
+        BANNER_PATTERNS.register("yellow_ball", () -> new net.minecraft.world.level.block.entity.BannerPattern("ybl"));
+    public static final RegistryObject<net.minecraft.world.level.block.entity.BannerPattern> RED_BALL_PATTERN = 
+        BANNER_PATTERNS.register("red_ball", () -> new net.minecraft.world.level.block.entity.BannerPattern("rbl"));
+    public static final RegistryObject<net.minecraft.world.level.block.entity.BannerPattern> GREEN_BALL_PATTERN = 
+        BANNER_PATTERNS.register("green_ball", () -> new net.minecraft.world.level.block.entity.BannerPattern("gnbl"));
 
     public static final RegistryObject<SoundEvent> BALL_CLICK = SOUND_EVENTS.register("ball_click",
         () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "ball_click")));
@@ -107,6 +115,18 @@ public class GoogleBalls
     public static final RegistryObject<Item> GOOGLE_BALLS_BANNER_PATTERN = ITEMS.register("google_balls_banner_pattern",
         () -> new net.minecraft.world.item.BannerPatternItem(net.minecraft.tags.TagKey.create(Registries.BANNER_PATTERN, 
             new ResourceLocation(MODID, "pattern_item/google_balls")), new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BLUE_BALL_BANNER_PATTERN = ITEMS.register("blue_ball_banner_pattern",
+        () -> new net.minecraft.world.item.BannerPatternItem(net.minecraft.tags.TagKey.create(Registries.BANNER_PATTERN, 
+            new ResourceLocation(MODID, "pattern_item/blue_ball")), new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> YELLOW_BALL_BANNER_PATTERN = ITEMS.register("yellow_ball_banner_pattern",
+        () -> new net.minecraft.world.item.BannerPatternItem(net.minecraft.tags.TagKey.create(Registries.BANNER_PATTERN, 
+            new ResourceLocation(MODID, "pattern_item/yellow_ball")), new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> RED_BALL_BANNER_PATTERN = ITEMS.register("red_ball_banner_pattern",
+        () -> new net.minecraft.world.item.BannerPatternItem(net.minecraft.tags.TagKey.create(Registries.BANNER_PATTERN, 
+            new ResourceLocation(MODID, "pattern_item/red_ball")), new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> GREEN_BALL_BANNER_PATTERN = ITEMS.register("green_ball_banner_pattern",
+        () -> new net.minecraft.world.item.BannerPatternItem(net.minecraft.tags.TagKey.create(Registries.BANNER_PATTERN, 
+            new ResourceLocation(MODID, "pattern_item/green_ball")), new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
@@ -129,6 +149,10 @@ public class GoogleBalls
                 output.accept(RED_GOOGLE_BALL_SEEDS.get());
                 output.accept(GREEN_GOOGLE_BALL_SEEDS.get());
                 output.accept(GOOGLE_BALLS_BANNER_PATTERN.get());
+                output.accept(BLUE_BALL_BANNER_PATTERN.get());
+                output.accept(YELLOW_BALL_BANNER_PATTERN.get());
+                output.accept(RED_BALL_BANNER_PATTERN.get());
+                output.accept(GREEN_BALL_BANNER_PATTERN.get());
                 output.accept(BALLS_BOWL.get());
             }).build());
 
