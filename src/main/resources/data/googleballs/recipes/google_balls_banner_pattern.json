@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "googleballs:blue_google_ball"
+    },
+    {
+      "item": "googleballs:yellow_google_ball"
+    },
+    {
+      "item": "googleballs:red_google_ball"
+    },
+    {
+      "item": "googleballs:green_google_ball"
+    },
+    {
+      "item": "minecraft:paper"
+    }
+  ],
+  "result": {
+    "item": "googleballs:google_balls_banner_pattern"
+  }
+}
