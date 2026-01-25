@@ -1,4 +1,6 @@
 # google balls mod for minecraft
+![the mod's icon, depicting 4 colored balls. green, yellow, red, and blue.](icon.png)
+
 this is the google balls mod for minecraft forge/neoforge 1.20.1! it adds stuff like:
 - the 4 google balls
 - google balls block
