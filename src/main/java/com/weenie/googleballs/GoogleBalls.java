@@ -34,6 +34,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModLoadingContext;
 import org.slf4j.Logger;
 import net.minecraft.network.chat.Component;
 
@@ -175,10 +177,8 @@ public class GoogleBalls
                 output.accept(DEEPSLATE_GOOGLE_BALLS_ORE.get());
             }).build());
 
-    public GoogleBalls(FMLJavaModLoadingContext context)
+    public GoogleBalls(IEventBus modEventBus, ModContainer modContainer)
     {
-        IEventBus modEventBus = context.getModEventBus();
-
         modEventBus.addListener(this::commonSetup);
 
         BLOCKS.register(modEventBus);
@@ -193,7 +193,7 @@ public class GoogleBalls
 
         modEventBus.addListener(this::addCreative);
 
-        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
