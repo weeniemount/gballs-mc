@@ -10,17 +10,18 @@ import net.minecraft.client.gui.screens.PauseScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.minecraft.client.gui.components.WidgetSprites;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // no way google balls IN MINECRAFT!!!
 
-@Mod.EventBusSubscriber(modid = GoogleBalls.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+@EventBusSubscriber(modid = GoogleBalls.MODID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public class GoogleBallsApplet {
 
     static class Point {
@@ -228,20 +229,28 @@ public class GoogleBallsApplet {
     @SubscribeEvent
     public static void onScreenInit(ScreenEvent.Init.Post event) {
         if (event.getScreen() instanceof PauseScreen) {
-            Screen screen = event.getScreen();
-            
-            ResourceLocation texture = new ResourceLocation(GoogleBalls.MODID, "textures/gui/balls.png");
-            
+            ResourceLocation normal = ResourceLocation.fromNamespaceAndPath(
+                GoogleBalls.MODID,
+                "balls"
+            );
+
+            ResourceLocation hovered = ResourceLocation.fromNamespaceAndPath(
+                GoogleBalls.MODID,
+                "balls_hovered"
+            );
+
+            WidgetSprites sprites = new WidgetSprites(
+                normal,
+                normal,
+                hovered,
+                hovered
+            );
+
             ImageButton button = new ImageButton(
                 5, 5,
                 20, 20,
-                0, 0,
-                20,
-                texture,
-                20, 40,
-                (btn) -> {
-                    open();
-                }
+                sprites,
+                btn -> open()
             );
             
             event.addListener(button);

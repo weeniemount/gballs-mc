@@ -25,7 +25,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,12 +36,13 @@ public class BallClasses {
         }
 
         @Override
-        public void applyEffectTick(LivingEntity entity, int amplifier) {
+        public boolean applyEffectTick(LivingEntity entity, int amplifier) {
             // do nothing
+            return true;
         }
 
         @Override
-        public boolean isDurationEffectTick(int duration, int amplifier) {
+        public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
             return true;
         }
     }
@@ -52,6 +52,7 @@ public class BallClasses {
             super(properties);
         }
 
+        @Override
         public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
             return Shapes.empty();
         }
@@ -62,7 +63,7 @@ public class BallClasses {
         }
 
         @Override
-        public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
             if (!level.isClientSide()) {
                 level.playSound(null, pos, GoogleBalls.BALL_CLICK.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             }
@@ -70,9 +71,9 @@ public class BallClasses {
         }
 
         @Override
-        public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
+        public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
             tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
-            super.appendHoverText(stack, level, tooltip, flag);
+            super.appendHoverText(stack, context, tooltip, flag);
         }
 
         @Override
@@ -86,9 +87,10 @@ public class BallClasses {
             super(properties);
         }
         
-        public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
+        @Override
+        public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
             tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
-            super.appendHoverText(stack, level, tooltip, flag);
+            super.appendHoverText(stack, context, tooltip, flag);
         }
 
         @Override
@@ -103,9 +105,9 @@ public class BallClasses {
         }
 
         @Override
-        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
             tooltip.add(Component.translatable("item.googleballs.bowl_of_google_balls.desc").withStyle(ChatFormatting.GRAY));
-            super.appendHoverText(stack, level, tooltip, flag);
+            super.appendHoverText(stack, context, tooltip, flag);
         }
 
         @Override
@@ -113,7 +115,7 @@ public class BallClasses {
             ItemStack result = super.finishUsingItem(stack, level, entity);
             
             if (entity instanceof Player player) {
-                player.addEffect(new MobEffectInstance(GoogleBalls.BOUNCY_EFFECT.get(), 6000, 0));
+                player.addEffect(new MobEffectInstance(GoogleBalls.BOUNCY_EFFECT, 6000, 0));
                 
                 if (!player.getAbilities().instabuild) {
                     if (stack.isEmpty()) {
