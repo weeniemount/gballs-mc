@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
     {
       "item": "googleballs:blue_google_ball"
@@ -10,6 +9,6 @@
     }
   ],
   "result": {
-    "item": "googleballs:blue_ball_banner_pattern"
+    "id": "googleballs:blue_ball_banner_pattern"
   }
 }

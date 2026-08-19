@@ -23,7 +23,7 @@
     }
   },
   "result": {
-    "item": "googleballs:bowl_of_google_balls",
+    "id": "googleballs:bowl_of_google_balls",
     "count": 1
   }
 }
