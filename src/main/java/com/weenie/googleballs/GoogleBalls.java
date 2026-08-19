@@ -48,20 +48,8 @@ public class GoogleBalls
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Registries.SOUND_EVENT, MODID);
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, MODID);
     public static final DeferredRegister<net.minecraft.world.entity.EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, MODID);
-    public static final DeferredRegister<net.minecraft.world.level.block.entity.BannerPattern> BANNER_PATTERNS = DeferredRegister.create(Registries.BANNER_PATTERN, MODID);
 
     public static final DeferredHolder<MobEffect, MobEffect> BOUNCY_EFFECT = MOB_EFFECTS.register("bouncy", BallClasses.BouncyEffect::new);
-
-    public static final DeferredHolder<net.minecraft.world.level.block.entity.BannerPattern, net.minecraft.world.level.block.entity.BannerPattern> GOOGLE_BALLS_PATTERN =
-        BANNER_PATTERNS.register("google_balls", () -> new net.minecraft.world.level.block.entity.BannerPattern(ResourceLocation.fromNamespaceAndPath(MODID, "google_balls"), "gbl"));
-    public static final DeferredHolder<net.minecraft.world.level.block.entity.BannerPattern, net.minecraft.world.level.block.entity.BannerPattern> BLUE_BALL_PATTERN =
-        BANNER_PATTERNS.register("blue_ball", () -> new net.minecraft.world.level.block.entity.BannerPattern(ResourceLocation.fromNamespaceAndPath(MODID, "blue_ball"), "bbl"));
-    public static final DeferredHolder<net.minecraft.world.level.block.entity.BannerPattern, net.minecraft.world.level.block.entity.BannerPattern> YELLOW_BALL_PATTERN =
-        BANNER_PATTERNS.register("yellow_ball", () -> new net.minecraft.world.level.block.entity.BannerPattern(ResourceLocation.fromNamespaceAndPath(MODID, "yellow_ball"), "ybl"));
-    public static final DeferredHolder<net.minecraft.world.level.block.entity.BannerPattern, net.minecraft.world.level.block.entity.BannerPattern> RED_BALL_PATTERN =
-        BANNER_PATTERNS.register("red_ball", () -> new net.minecraft.world.level.block.entity.BannerPattern(ResourceLocation.fromNamespaceAndPath(MODID, "red_ball"), "rbl"));
-    public static final DeferredHolder<net.minecraft.world.level.block.entity.BannerPattern, net.minecraft.world.level.block.entity.BannerPattern> GREEN_BALL_PATTERN =
-        BANNER_PATTERNS.register("green_ball", () -> new net.minecraft.world.level.block.entity.BannerPattern(ResourceLocation.fromNamespaceAndPath(MODID, "green_ball"), "gnbl"));
 
     public static final DeferredHolder<SoundEvent, SoundEvent> BALL_CLICK = SOUND_EVENTS.register("ball_click",
         () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "ball_click")));
@@ -185,7 +173,6 @@ public class GoogleBalls
         SOUND_EVENTS.register(modEventBus);
         MOB_EFFECTS.register(modEventBus);
         ENTITY_TYPES.register(modEventBus);
-        BANNER_PATTERNS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 
