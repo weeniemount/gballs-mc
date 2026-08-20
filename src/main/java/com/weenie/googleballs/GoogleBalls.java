@@ -137,7 +137,7 @@ public class GoogleBalls
     public static final RegistryObject<Item> YELLOW_COOKED_GOOGLE_BALL = ITEMS.register("yellow_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(3).saturationMod(3f).build())));
     public static final RegistryObject<Item> RED_COOKED_GOOGLE_BALL = ITEMS.register("red_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
-            .alwaysEat().nutrition(2.5).saturationMod(2.5f).build())));
+            .alwaysEat().nutrition(2).saturationMod(2.5f).build())));
     public static final RegistryObject<Item> GREEN_COOKED_GOOGLE_BALL = ITEMS.register("green_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(1f).build())));
 
