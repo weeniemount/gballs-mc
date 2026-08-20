@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TPT",
+    "TST"
+  ],
+  "key": {
+    "P": {
+      "item": "googleballs:purple_google_ball_bottom"
+    },
+    "T": {
+      "item": "minecraft:purple_terracotta"
+    },
+    "S": {
+      "item": "minecraft:wheat_seeds"
+    }
+  },
+  "result": {
+    "item": "googleballs:purple_google_ball_core"
+  }
+}

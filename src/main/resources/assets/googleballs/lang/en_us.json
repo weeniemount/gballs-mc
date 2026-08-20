@@ -5,7 +5,7 @@
   "block.googleballs.yellow_google_ball": "Yellow Google Ball",
   "block.googleballs.red_google_ball": "Red Google Ball",
   "block.googleballs.green_google_ball": "Green Google Ball",
-  "block.googleballs.purple_google_ball": "Purple Google Ball?",
+  "block.googleballs.purple_google_ball": "Purple Google Ball",
   "block.googleballs.google_balls_ore": "Google Balls Ore",
   "block.googleballs.deepslate_google_balls_ore": "Deepslate Google Balls Ore",
 
@@ -24,8 +24,14 @@
   "item.googleballs.yellow_google_ball_seeds": "Yellow Google Ball Seeds",
   "item.googleballs.red_google_ball_seeds": "Red Google Ball Seeds",
   "item.googleballs.green_google_ball_seeds": "Green Google Ball Seeds",
+  "item.googleballs.purple_google_ball_top": "Purple Google Ball Top",
+  "item.googleballs.purple_google_ball_bottom": "Purple Google Ball Bottom",
+  "item.googleballs.purple_google_ball_core": "Purple Google Ball Core",
   
   "item.googleballs.bowl_of_google_balls.desc": "a bowl of the 4 google balls. very nutritious!",
+  "item.googleballs.purple_google_ball_top.desc": "the top half of a purple ball. are you sure you want to craft this bro?",
+  "item.googleballs.purple_google_ball_bottom.desc": "the bottom half of a purple ball. are you sure you want to craft this bro?",
+  "item.googleballs.purple_google_ball_core.desc": "the very evil essence of the purple ball. no really you dont want this ball bruh",
 
   "sound.googleballs.ball_click": "Sound of Google Balls",
 

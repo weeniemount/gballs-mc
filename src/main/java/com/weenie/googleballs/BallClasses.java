@@ -142,6 +142,42 @@ public class BallClasses {
         }
     }
 
+    public static class PurpleGoogleBallTopItem extends Item {
+        public PurpleGoogleBallTopItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, level, tooltip, flag);
+        }
+    }
+
+    public static class PurpleGoogleBallBottomItem extends Item {
+        public PurpleGoogleBallBottomItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, level, tooltip, flag);
+        }
+    }
+
+    public static class PurpleGoogleBallCoreItem extends Item {
+        public PurpleGoogleBallCoreItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, level, tooltip, flag);
+        }
+    }
+
     public static class ThrownGoogleBall extends net.minecraft.world.entity.projectile.ThrowableItemProjectile {
         private Block blockToPlace;
         
