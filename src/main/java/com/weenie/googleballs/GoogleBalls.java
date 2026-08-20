@@ -131,6 +131,16 @@ public class GoogleBalls
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
 
+    // over here cooking balls
+    public static final RegistryObject<Item> BLUE_COOKED_GOOGLE_BALL = ITEMS.register("blue_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
+            .alwaysEat().nutrition(1).saturationMod(4f).build())));
+    public static final RegistryObject<Item> YELLOW_COOKED_GOOGLE_BALL = ITEMS.register("yellow_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
+            .alwaysEat().nutrition(1).saturationMod(3f).build())));
+    public static final RegistryObject<Item> RED_COOKED_GOOGLE_BALL = ITEMS.register("red_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
+            .alwaysEat().nutrition(1).saturationMod(2.5f).build())));
+    public static final RegistryObject<Item> GREEN_COOKED_GOOGLE_BALL = ITEMS.register("green_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
+            .alwaysEat().nutrition(1).saturationMod(1f).build())));
+
     public static final RegistryObject<Item> BALLS_BOWL = ITEMS.register("bowl_of_google_balls", () -> new BallClasses.BowlOfGoogleBallsItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(6).saturationMod(4f).build()).craftRemainder(Items.BOWL)));
 
@@ -173,6 +183,10 @@ public class GoogleBalls
                 output.accept(BALLS_BOWL.get());
                 output.accept(GOOGLE_BALLS_ORE.get());
                 output.accept(DEEPSLATE_GOOGLE_BALLS_ORE.get());
+                output.accept(BLUE_COOKED_GOOGLE_BALL.get());
+                output.accept(YELLOW_COOKED_GOOGLE_BALL.get());
+                output.accept(RED_COOKED_GOOGLE_BALL.get());
+                output.accept(GREEN_COOKED_GOOGLE_BALL.get());
             }).build());
 
     public GoogleBalls(FMLJavaModLoadingContext context)

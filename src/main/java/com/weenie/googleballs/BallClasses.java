@@ -130,6 +130,18 @@ public class BallClasses {
         }
     }
 
+    public static class CookedGoogleBallItem extends Item {
+        public CookedGoogleBallItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, level, tooltip, flag);
+        }
+    }
+
     public static class ThrownGoogleBall extends net.minecraft.world.entity.projectile.ThrowableItemProjectile {
         private Block blockToPlace;
         

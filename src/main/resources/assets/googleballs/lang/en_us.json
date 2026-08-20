@@ -25,17 +25,22 @@
   "item.googleballs.red_google_ball_seeds": "Red Google Ball Seeds",
   "item.googleballs.green_google_ball_seeds": "Green Google Ball Seeds",
   
-  "item.googleballs.bowl_of_google_balls.desc": "a bowl of the 4 google balls. very nutritional!",
+  "item.googleballs.bowl_of_google_balls.desc": "a bowl of the 4 google balls. very nutritious!",
 
   "sound.googleballs.ball_click": "Sound of Google Balls",
 
   "effect.googleballs.bouncy": "Bouncy",
   "effect.googleballs.bouncy.description": "yor a google ball now",
 
+  "item.googleballs.blue_cooked_google_ball": "Blue Cooked Google Ball",
+  "item.googleballs.yellow_cooked_google_ball": "Yellow Cooked Google Ball",
+  "item.googleballs.red_cooked_google_ball": "Red Cooked Google Ball",
+  "item.googleballs.green_cooked_google_ball": "Green Cooked Google Ball",
 
-
-
-
+  "item.googleballs.blue_cooked_google_ball.desc": "a cooked blue google ball. very nutritious!",
+  "item.googleballs.yellow_cooked_google_ball.desc": "a cooked yellow google ball. very nutritious!",
+  "item.googleballs.red_cooked_google_ball.desc": "a cooked red google ball. very nutritious!",
+  "item.googleballs.green_cooked_google_ball.desc": "a cooked green google ball. very nutritious!",
 
   "block.minecraft.banner.googleballs.blue_ball": "Blue Ball",
   "block.minecraft.banner.googleballs.yellow_ball": "Yellow Ball",
