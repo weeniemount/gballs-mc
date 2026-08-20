@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    " C ",
+    " B "
+  ],
+  "key": {
+    "T": {
+      "item": "googleballs:purple_google_ball_top"
+    },
+    "C": {
+      "item": "googleballs:purple_google_ball_core"
+    },
+    "B": {
+      "item": "googleballs:purple_google_ball_bottom"
+    }
+  },
+  "result": {
+    "item": "googleballs:purple_google_ball"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "googleballs:red_google_ball"
+  },
+  "result": "googleballs:red_cooked_google_ball",
+  "experience": 0.35,
+  "cookingtime": 200
+}
