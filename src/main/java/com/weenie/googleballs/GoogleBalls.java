@@ -148,6 +148,8 @@ public class GoogleBalls
             .alwaysEat().nutrition(2).saturationMod(2.5f).build())));
     public static final RegistryObject<Item> GREEN_COOKED_GOOGLE_BALL = ITEMS.register("green_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(1).saturationMod(1f).build())));
+    public static final RegistryObject<Item> PURPLE_COOKED_GOOGLE_BALL = ITEMS.register("purple_cooked_google_ball", () -> new BallClasses.PurpleGoogleBallFoodItem(new Item.Properties().food(new FoodProperties.Builder()
+            .alwaysEat().nutrition(-256).saturationMod(-256).build())));
 
     public static final RegistryObject<Item> BALLS_BOWL = ITEMS.register("bowl_of_google_balls", () -> new BallClasses.BowlOfGoogleBallsItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEat().nutrition(6).saturationMod(4f).build()).craftRemainder(Items.BOWL)));
@@ -196,6 +198,7 @@ public class GoogleBalls
                 output.accept(YELLOW_COOKED_GOOGLE_BALL.get());
                 output.accept(RED_COOKED_GOOGLE_BALL.get());
                 output.accept(GREEN_COOKED_GOOGLE_BALL.get());
+                output.accept(PURPLE_COOKED_GOOGLE_BALL.get());
                 output.accept(PURPLE_GOOGLE_BALL_TOP.get());
                 output.accept(PURPLE_GOOGLE_BALL_BOTTOM.get());
                 output.accept(PURPLE_GOOGLE_BALL_CORE.get());
