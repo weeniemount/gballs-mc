@@ -16,6 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -274,6 +275,24 @@ public class BallClasses {
         public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
             tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
             super.appendHoverText(stack, context, tooltip, flag);
+        }
+    }
+
+    public static class PurpleGoogleBallFoodItem extends Item {
+        public PurpleGoogleBallFoodItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, context, tooltip, flag);
+        }
+
+        // purple so burnt and ass that you can use it as a fuel source for no reason
+        @Override
+        public int getBurnTime(ItemStack itemStack, RecipeType<?> recipeType) {
+            return 1600;
         }
     }
 

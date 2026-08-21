@@ -134,6 +134,8 @@ public class GoogleBalls
         .alwaysEdible().nutrition(2).saturationModifier(2.5f).build())));
     public static final DeferredHolder<Item, Item> GREEN_COOKED_GOOGLE_BALL = ITEMS.register("green_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
         .alwaysEdible().nutrition(1).saturationModifier(1f).build())));
+    public static final DeferredHolder<Item, Item> PURPLE_COOKED_GOOGLE_BALL = ITEMS.register("purple_cooked_google_ball", () -> new BallClasses.PurpleGoogleBallFoodItem(new Item.Properties().food(new FoodProperties.Builder()
+        .alwaysEdible().nutrition(-256).saturationModifier(-256f).build())));
 
     public static final DeferredHolder<Item, Item> BALLS_BOWL = ITEMS.register("bowl_of_google_balls", () -> new BallClasses.BowlOfGoogleBallsItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEdible().nutrition(6).saturationModifier(4f).build()).craftRemainder(Items.BOWL)));
@@ -182,6 +184,7 @@ public class GoogleBalls
                 output.accept(YELLOW_COOKED_GOOGLE_BALL.get());
                 output.accept(RED_COOKED_GOOGLE_BALL.get());
                 output.accept(GREEN_COOKED_GOOGLE_BALL.get());
+                output.accept(PURPLE_COOKED_GOOGLE_BALL.get());
                 output.accept(PURPLE_GOOGLE_BALL_TOP.get());
                 output.accept(PURPLE_GOOGLE_BALL_BOTTOM.get());
                 output.accept(PURPLE_GOOGLE_BALL_CORE.get());
