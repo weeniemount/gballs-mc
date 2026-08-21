@@ -178,6 +178,24 @@ public class BallClasses {
         }
     }
 
+    public static class PurpleGoogleBallFoodItem extends Item {
+        public PurpleGoogleBallFoodItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, level, tooltip, flag);
+        }
+
+        // purple so burnt and ass that you can use it as a fuel source for no reason
+        @Override
+        public int getBurnTime(ItemStack itemStack, @Nullable net.minecraft.world.item.crafting.RecipeType<?> recipeType) {
+            return 1600;
+        }
+    }
+
     public static class ThrownGoogleBall extends net.minecraft.world.entity.projectile.ThrowableItemProjectile {
         private Block blockToPlace;
         

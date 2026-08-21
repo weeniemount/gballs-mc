@@ -13,7 +13,7 @@
   "block.googleballs.yellow_google_ball.desc": "the yellow google ball!\n\nright click to throw\nshift + right click to place down normally",
   "block.googleballs.red_google_ball.desc": "the red google ball!\n\nright click to throw\nshift + right click to place down normally",
   "block.googleballs.green_google_ball.desc": "the green google ball!\n\nright click to throw\nshift + right click to place down normally",
-  "block.googleballs.purple_google_ball.desc": "the.... purple... google ball? what the fuck??",
+  "block.googleballs.purple_google_ball.desc": "the.... purple... google ball? what the fuck??\n\nright click to throw\nshift + right click to place down normally",
   "block.googleballs.example_block.desc": "Example Block Description!!!!!!!!!!",
   "block.googleballs.googleballs_block.desc": "googl ball",
 
@@ -42,11 +42,13 @@
   "item.googleballs.yellow_cooked_google_ball": "Yellow Cooked Google Ball",
   "item.googleballs.red_cooked_google_ball": "Red Cooked Google Ball",
   "item.googleballs.green_cooked_google_ball": "Green Cooked Google Ball",
+  "item.googleballs.purple_cooked_google_ball": "Purple Cooked Google Ball",
 
   "item.googleballs.blue_cooked_google_ball.desc": "a cooked blue google ball. very nutritious!",
   "item.googleballs.yellow_cooked_google_ball.desc": "a cooked yellow google ball. very nutritious!",
   "item.googleballs.red_cooked_google_ball.desc": "a cooked red google ball. very nutritious!",
   "item.googleballs.green_cooked_google_ball.desc": "a cooked green google ball. very nutritious!",
+  "item.googleballs.purple_cooked_google_ball.desc": "a cooked purple google ball. DO NOT EAT! VERY UNNUTRITIOUS!",
 
   "block.minecraft.banner.googleballs.blue_ball": "Blue Ball",
   "block.minecraft.banner.googleballs.yellow_ball": "Yellow Ball",
