@@ -78,9 +78,15 @@ public class GoogleBalls
     public static final DeferredHolder<Item, Item> REDGOOGLE_BALL_ITEM = ITEMS.register("red_google_ball", () -> new BallClasses.ThrowableGoogleBallItem(REDGOOGLE_BALL.get(), new Item.Properties()));
     public static final DeferredHolder<Block, Block> GREENGOOGLE_BALL = BLOCKS.register("green_google_ball", () -> new BallClasses.GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5f, 6.0f)));
     public static final DeferredHolder<Item, Item> GREENGOOGLE_BALL_ITEM = ITEMS.register("green_google_ball", () -> new BallClasses.ThrowableGoogleBallItem(GREENGOOGLE_BALL.get(), new Item.Properties()));
-    // the purple google ball. intentionally unobtainable without /give.
     public static final DeferredHolder<Block, Block> PURPLEGOOGLE_BALL = BLOCKS.register("purple_google_ball", () -> new BallClasses.GoogleBallBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(0.5f, 6.0f)));
-    public static final DeferredHolder<Item, Item> PURPLEGOOGLE_BALL_ITEM = ITEMS.register("purple_google_ball", () -> new BlockItem(PURPLEGOOGLE_BALL.get(), new Item.Properties()));
+    public static final DeferredHolder<Item, Item> PURPLEGOOGLE_BALL_ITEM = ITEMS.register("purple_google_ball", () -> new BallClasses.ThrowableGoogleBallItem(PURPLEGOOGLE_BALL.get(), new Item.Properties()));
+
+            
+    // the only way to craft purple is unecessarily stupid. why? because its fucking evil
+    public static final DeferredHolder<Item, Item> PURPLE_GOOGLE_BALL_TOP = ITEMS.register("purple_google_ball_top", () -> new BallClasses.PurpleGoogleBallTopItem(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> PURPLE_GOOGLE_BALL_BOTTOM = ITEMS.register("purple_google_ball_bottom", () -> new BallClasses.PurpleGoogleBallBottomItem(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> PURPLE_GOOGLE_BALL_CORE = ITEMS.register("purple_google_ball_core", () -> new BallClasses.PurpleGoogleBallCoreItem(new Item.Properties()));
+
 
     public static final DeferredHolder<Block, Block> BLUE_GOOGLE_BALL_CROP = BLOCKS.register("blue_google_ball_crop",
         () -> new BallClasses.GoogleBallCropBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(net.minecraft.world.level.block.SoundType.CROP), BLUEGOOGLE_BALL.get()));
@@ -119,6 +125,16 @@ public class GoogleBalls
     public static final DeferredHolder<Item, Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEdible().nutrition(1).saturationModifier(2f).build())));
 
+    // over here cooking balls
+    public static final DeferredHolder<Item, Item> BLUE_COOKED_GOOGLE_BALL = ITEMS.register("blue_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
+        .alwaysEdible().nutrition(4).saturationModifier(4f).build())));
+    public static final DeferredHolder<Item, Item> YELLOW_COOKED_GOOGLE_BALL = ITEMS.register("yellow_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
+        .alwaysEdible().nutrition(3).saturationModifier(3f).build())));
+    public static final DeferredHolder<Item, Item> RED_COOKED_GOOGLE_BALL = ITEMS.register("red_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
+        .alwaysEdible().nutrition(2).saturationModifier(2.5f).build())));
+    public static final DeferredHolder<Item, Item> GREEN_COOKED_GOOGLE_BALL = ITEMS.register("green_cooked_google_ball", () -> new BallClasses.CookedGoogleBallItem(new Item.Properties().food(new FoodProperties.Builder()
+        .alwaysEdible().nutrition(1).saturationModifier(1f).build())));
+
     public static final DeferredHolder<Item, Item> BALLS_BOWL = ITEMS.register("bowl_of_google_balls", () -> new BallClasses.BowlOfGoogleBallsItem(new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEdible().nutrition(6).saturationModifier(4f).build()).craftRemainder(Items.BOWL)));
 
@@ -149,6 +165,7 @@ public class GoogleBalls
                 output.accept(YELLOWGOOGLE_BALL.get());
                 output.accept(REDGOOGLE_BALL.get());
                 output.accept(GREENGOOGLE_BALL.get());
+                output.accept(PURPLEGOOGLE_BALL.get());
                 output.accept(BLUE_GOOGLE_BALL_SEEDS.get());
                 output.accept(YELLOW_GOOGLE_BALL_SEEDS.get());
                 output.accept(RED_GOOGLE_BALL_SEEDS.get());
@@ -161,6 +178,13 @@ public class GoogleBalls
                 output.accept(BALLS_BOWL.get());
                 output.accept(GOOGLE_BALLS_ORE.get());
                 output.accept(DEEPSLATE_GOOGLE_BALLS_ORE.get());
+                output.accept(BLUE_COOKED_GOOGLE_BALL.get());
+                output.accept(YELLOW_COOKED_GOOGLE_BALL.get());
+                output.accept(RED_COOKED_GOOGLE_BALL.get());
+                output.accept(GREEN_COOKED_GOOGLE_BALL.get());
+                output.accept(PURPLE_GOOGLE_BALL_TOP.get());
+                output.accept(PURPLE_GOOGLE_BALL_BOTTOM.get());
+                output.accept(PURPLE_GOOGLE_BALL_CORE.get());
             }).build());
 
     public GoogleBalls(IEventBus modEventBus, ModContainer modContainer)

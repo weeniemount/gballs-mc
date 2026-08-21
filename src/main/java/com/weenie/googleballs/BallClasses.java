@@ -229,6 +229,54 @@ public class BallClasses {
         }
     }
 
+    public static class CookedGoogleBallItem extends Item {
+        public CookedGoogleBallItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, context, tooltip, flag);
+        }
+    }
+
+    public static class PurpleGoogleBallTopItem extends Item {
+        public PurpleGoogleBallTopItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, context, tooltip, flag);
+        }
+    }
+
+    public static class PurpleGoogleBallBottomItem extends Item {
+        public PurpleGoogleBallBottomItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, context, tooltip, flag);
+        }
+    }
+
+    public static class PurpleGoogleBallCoreItem extends Item {
+        public PurpleGoogleBallCoreItem(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, context, tooltip, flag);
+        }
+    }
+
     public static class ThrowableGoogleBallItem extends BlockItem {
         public ThrowableGoogleBallItem(Block block, Properties properties) {
             super(block, properties);
